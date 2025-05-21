@@ -11,6 +11,9 @@
 
 # Rider files
 .idea/
+# Developer plugins, including Rider Link
+Plugins/Developer
+*.DotSettings.user
 
 Plugins/BlockoutToolsPlugin
 
@@ -59,22 +62,13 @@ SourceArt/**/*.png
 SourceArt/**/*.tga
 
 # Binary Files
-# Ignore exceptions don't work on subdirectories so need to list out the path fully
 Binaries/*/*
-Plugins/*/Binaries/*
-# allow editor development build files for faster onboarding
-# use a regex to avoid matching the Debug builds
-# git actually using linux fnmatch: https://www.man7.org/linux/man-pages/man3/fnmatch.3.html which does not support the full regex character set
-# See also https://git-scm.com/docs/gitignore#_pattern_format
-!Binaries/*/UnrealEditor-TankRampage.dll
-!Binaries/*/UnrealEditor-TR[a-zA-Z]*[^Debug].dll
-!Binaries/*/TankRampageEditor.target
-!Binaries/*/UnrealEditor.modules
+Plugins/*/Binaries/*/*
 
 # Builds
 Build/*
 
-# Whitelist PakBlacklist-<BuildConfiguration>.txt files
+# Allow PakBlacklist-<BuildConfiguration>.txt files
 !Build/*/
 Build/*/**
 !Build/*/PakBlacklist*.txt
@@ -106,5 +100,10 @@ DerivedDataCache/*
 *.drawio.bkp
 *.drawio.dtmp
 
+# Saved Logs
+/Logs
 # Modeling tools temporary files
 _GENERATED/
+
+# VS Solution conversion report
+UpgradeLog.htm*
