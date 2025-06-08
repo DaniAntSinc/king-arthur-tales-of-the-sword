@@ -107,3 +107,19 @@ _GENERATED/
 
 # VS Solution conversion report
 UpgradeLog.htm*
+Content/BattleSystem/Models/Props/Sword/Sword_Normal_Map.uasset
+Content/BattleSystem/Models/Props/Sword/Sword_AO_Map.uasset
+Content/BattleSystem/Models/Props/Sword/Sword.uasset
+Content/BattleSystem/Models/Props/Sword/Sword.blend
+Content/BattleSystem/Models/Props/Sword.uasset
+Content/BattleSystem/Models/Props/NewMaterial.uasset
+Content/BattleSystem/Models/Props/FlameAttackUpEffect/T_FlameMask.uasset
+Content/BattleSystem/Models/Props/FlameAttackUpEffect/T_Flame.uasset
+Content/BattleSystem/Models/Props/FlameAttackUpEffect/SwordMaterial.uasset
+Content/BattleSystem/Models/Props/FlameAttackUpEffect/OpenCylinder.uasset
+Content/BattleSystem/Models/Props/FlameAttackUpEffect/M_FlameEffect.uasset
+Content/BattleSystem/Models/Props/FlameAttackUpEffect/M_AttackUp_Func.uasset
+Content/BattleSystem/Models/Props/FlameAttackUpEffect/M_AttackUp.uasset
+Content/BattleSystem/Models/Props/FlameAttackUpEffect/CC_Flame.uasset
+Content/BattleSystem/Models/Props/FlameAttackUpEffect/CA_Flame.uasset
+Content/BattleSystem/Items/CombativeItems/BP_AttackUp_Visual.uasset
