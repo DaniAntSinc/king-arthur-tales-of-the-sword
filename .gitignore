@@ -21,7 +21,7 @@ Plugins/BlockoutToolsPlugin
 *.slo
 *.lo
 *.o
-*.obj
+# *.obj # NOTE: .OBJ is now allowed, because this is a 3d mesh file sormat as well: 
 
 # Precompiled Headers
 *.gch
