@@ -100,6 +100,9 @@ DerivedDataCache/*
 *.drawio.bkp
 *.drawio.dtmp
 
+# Material Maker temp files
+*.ptex.mmcr
+
 # Saved Logs
 /Logs
 # Modeling tools temporary files
