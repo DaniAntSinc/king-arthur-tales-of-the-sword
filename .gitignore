@@ -103,6 +103,9 @@ DerivedDataCache/*
 # Material Maker temp files
 *.ptex.mmcr
 
+# Krita temp files
+*.kra~
+
 # Saved Logs
 /Logs
 # Modeling tools temporary files
