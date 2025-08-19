@@ -1,0 +1,62 @@
+// Equivalent to TexCoord[0] material node
+const float2 KernelUVs = GetDefaultSceneTextureUV(Parameters, 1);
+// Getting texel size
+const float2 TexelSize = GetSceneTextureViewSize(1).zw;
+
+const int NORMAL_TEXTURE_ID = 8;
+const int DEPTH_TEXTURE_ID = 1;
+const int HALF_KERNEL_SIZE = KernelSize * 0.5;
+
+// Used to simulate a circular brush
+// x^2 + y ^ 2 > r^2 -> Ignore
+const float HALF_KERNEL_SIZE_SQ = KernelSize * KernelSize * 0.25;
+
+const float BrushRotationAngleRads = radians(BrushRotationAngle);
+const float2 RotationVector = float2(cos(BrushRotationAngleRads), sin(BrushRotationAngleRads));
+
+float2 PixelUVs;
+float3 LaplacianFilterNormal = float3(0.0, 0.0, 0.0);
+float LaplacianFilterDepth = 0.0;
+float CenterWeight = 0.0;
+
+// Iterate over each kernel cell
+for(int y = -HALF_KERNEL_SIZE; y <= HALF_KERNEL_SIZE; ++y)
+{
+    for(int x = -HALF_KERNEL_SIZE; x <= HALF_KERNEL_SIZE; ++x)
+    {
+        float2 KernelPoint = float2(x,y);
+        float2 MarkerPoint = float2(
+            dot(RotationVector, KernelPoint),
+            dot(RotationVector, float2(y,-x)));
+
+        if(dot(MarkerPoint, MarkerPoint) > HALF_KERNEL_SIZE_SQ)
+        {
+            continue;
+        }
+
+        ++CenterWeight;
+        PixelUVs = KernelUVs + TexelSize * KernelPoint;
+
+        // HLSL equivalent of the SceneTexture: SceneColor node
+        // First argument is the uvs, second is the identifier of the texture id (0 for scene color), and third is whether it is filtered
+        // The order in the material node is the index of the second argument
+        // Normal pass
+        LaplacianFilterNormal -= SceneTextureLookup(PixelUVs, NORMAL_TEXTURE_ID, false).rgb;
+        // Depth pass
+        LaplacianFilterDepth -= SceneTextureLookup(PixelUVs, DEPTH_TEXTURE_ID, false).r;
+    }
+}
+
+// Add back in center pixel (avoids an if/else in the inner for loop)
+// Add 1 to sum as subtracted it in the inner for loop (Accounted for by not subtracting 1 from original CenterWeight N^2 - 1 becomes N^2)
+LaplacianFilterNormal += SceneTextureLookup(KernelUVs, NORMAL_TEXTURE_ID, false).rgb * CenterWeight;
+LaplacianFilterDepth += SceneTextureLookup(KernelUVs, DEPTH_TEXTURE_ID, false).r * CenterWeight;
+
+const float InverseMagnitude = 1.0 / (CenterWeight - 1.0);
+
+// Divide both filters by center weight
+LaplacianFilterNormal *= InverseMagnitude;
+LaplacianFilterDepth *= InverseMagnitude;
+
+// Float3 + float -> Float4
+return float4(LaplacianFilterNormal, LaplacianFilterDepth);
