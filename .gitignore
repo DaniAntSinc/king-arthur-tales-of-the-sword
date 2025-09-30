@@ -129,3 +129,9 @@ Content/BattleSystem/Models/Props/FlameAttackUpEffect/M_AttackUp.uasset
 Content/BattleSystem/Models/Props/FlameAttackUpEffect/CC_Flame.uasset
 Content/BattleSystem/Models/Props/FlameAttackUpEffect/CA_Flame.uasset
 Content/BattleSystem/Items/CombativeItems/BP_AttackUp_Visual.uasset
+Content/BattleSystem/EnemyCharacters/LadyInTheLake/LadyUnit.uasset
+Content/BattleSystem/Models/Enemies/LadyInTheLake/ABP_LadyLake.uasset
+Content/BattleSystem/PlayerCharacters/DealDamangeTemp.uasset
+Content/Music/KingArthur_wip_1.wav
+Content/BattleSystem/EnemyCharacters/LadyInTheLake/LadyUnit.uasset
+Content/Music/KingArthur_wip_1.wav
